@@ -2,6 +2,7 @@ package io.qameta.testops;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Param;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -17,11 +18,12 @@ public class parameterizedTest {
 
     private final RestSteps steps = new RestSteps();
 
-    @Description("@Param(value = \"Title\", mode = Parameter.Mode.HIDDEN \n allows having a dymanic parameter in test, that is hidden from UI and \n" +
+    @Description("@Param(value = \"Note\", mode = Parameter.Mode.HIDDEN \n allows having a dynamnic parameter in test, that is hidden from UI and \n" +
             "is not used the history ID calculations")
-    @ParameterizedTest(name = "{displayName} ({argumentsWithNames})")
+    @DisplayName("We are the champignons")
+    @ParameterizedTest(name = "({argumentsWithNames})")
     @MethodSource("epochTimestamps")
-    public void useCaseHiddenParameterTest(@Param("Title") long epochTimestamp) {
+    public void useCaseHiddenParameterTest(@Param("Note") long epochTimestamp) {
         Date date = new Date(epochTimestamp);
         String note = date.toString();
 
